@@ -2,7 +2,62 @@
 
 # obsessed
 
+Retry mechanism for Node.js and the browser.
+
 ## Synopsis
+
+```js
+var obsessed = require('obsessed');
+```
+
+### Sync:
+
+Obsessed will run the following code up to 8 times. If an error is thrown,
+it will continue invoking the callback until the limit is hit.
+
+```js
+obsessed(8, function() {
+  // do something risky
+
+  if (failed) {
+    throw new Error('oops');
+  }
+});
+
+obsessed('8 times', function() {
+  // do work
+  throw new Error('oops');
+});
+```
+
+### Async:
+
+Running a risky async task is pretty simple.
+
+Supply a task and invoke the callback when you are done. If an error occurred
+during the execution of the code, pass it as an argument to `done` and
+Obsessed will retry the operation.
+
+You can delay the execution of the attempts by calling `delay`.
+
+`end` will be triggered with the operation is done.
+
+```js
+function fn(done) {
+  // async calls
+  done(new Error('failed'));
+};
+
+function end(err, param, ...) {
+  console.log(err);
+};
+
+obsessed('3 times')
+  .task(fn)
+  .delay(200)
+  .end(end)
+  .run();
+```
 
 ## Installation
 
@@ -14,16 +69,11 @@ $ npm install obsessed
 
 Browser:
 
-Download `obsessed.min.js` and include it in your pages:
+Download `obsessed.min.js` and include it in the html:
 
 ```html
 <script src="obsessed.min.js"></script>
 ```
-
-## Requirements
-
-- Node.js >= 0.6.0 or
-- Sane browser
 
 ## Tests
 
