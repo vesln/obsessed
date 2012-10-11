@@ -2,3 +2,5 @@ support
 test
 examples
 *.sock
+obsessed.js
+obsessed.min.js
