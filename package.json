@@ -15,6 +15,7 @@
   "dependencies": {},
   "devDependencies": {
     "mocha": "*",
+    "folio": "*",
     "chai": "*"
   },
   "author": "Veselin Todorov <hi@vesln.com>",

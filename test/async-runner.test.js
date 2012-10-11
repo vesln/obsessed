@@ -3,7 +3,8 @@
  * Subject.
  */
 
-var AsyncRunner = require('../lib/async-runner');
+var obsessed = obsessed || require('../')
+  , AsyncRunner = obsessed.AsyncRunner;
 
 describe('AsyncRunner', function() {
   it('can retry async operations n times', function(done) {

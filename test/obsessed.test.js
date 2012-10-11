@@ -3,14 +3,14 @@
  * Subject.
  */
 
-var obsessed = require('../');
+var obsessed = obsessed || require('../');
 
 /**
  * Subject dependencies.
  */
 
-var SyncRunner = require('../lib/sync-runner')
-  , AsyncRunner = require('../lib/async-runner');
+var SyncRunner = obsessed.SyncRunner
+  , AsyncRunner = obsessed.AsyncRunner;
 
 describe('obsessed', function() {
   it('can handle strings for number of times', function() {

@@ -3,7 +3,8 @@
  * Subject.
  */
 
-var SyncRunner = require('../lib/sync-runner');
+var obsessed = obsessed || require('../')
+  , SyncRunner = obsessed.SyncRunner;
 
 describe('SyncRunner', function() {
   it('throws the last error when hitting the limit', function() {

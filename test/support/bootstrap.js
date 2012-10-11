@@ -3,10 +3,10 @@
  * External dependencies.
  */
 
-var chai = require('chai');
+var chai = chai || require('chai');
 
 /**
  * Register `should`.
  */
 
-global.should = chai.should();
+var should = chai.should();
