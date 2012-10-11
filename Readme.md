@@ -4,16 +4,40 @@
 
 ## Synopsis
 
+## Installation
+
+Node.js:
+
+```
+$ npm install obsessed
+```
+
+Browser:
+
+Download `obsessed.min.js` and include it in your pages:
+
+```html
+<script src="obsessed.min.js"></script>
+```
+
 ## Requirements
 
-- Node.js >= 0.6.0
+- Node.js >= 0.6.0 or
+- Sane browser
 
 ## Tests
+
+Node.js:
 
 ```
 $ npm install
 $ make test
 ```
+
+Browser:
+
+- Download the repository
+- Open `test/browser/index.html` in your favourite browser
 
 ## License
 
