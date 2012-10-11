@@ -48,21 +48,22 @@ describe('obsessed', function() {
     }).should.throw(Error, 'Oops.');
   });
 
-  xit('can retry async operations n times', function(done) {
+  it('can retry async operations n times', function(done) {
+    var i = 3;
+
     var end = function(err, arg) {
       err.message.should.eq('Oops.');
       arg.should.eql('arg');
       done();
     };
 
-    obsessed('3 times')
-      .timeout(15)
-      .run(fn)
-      .end(end)
-      .run();
+    var fn = function(done) {
+      done(new Error('Oops.'), 'arg');
+    };
 
-    obsessed(2, function(done) {
-      done(new Error('Oops'), 'arg');
-    }, end);
+    obsessed('3 times')
+      .task(fn)
+      .notify(end)
+      .run()
   });
 });
