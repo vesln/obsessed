@@ -13,7 +13,7 @@ describe('SyncRunner', function() {
 
     (function() {
       runner.run();
-    }).should.throw(Error, 'Oops.');
+    }).should.throw(Error, 'Operation failed');
   });
 
   it('retries sync operations n times', function() {

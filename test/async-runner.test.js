@@ -10,7 +10,7 @@ describe('AsyncRunner', function() {
     var runner = new AsyncRunner('3 times');
 
     var end = function(err, arg) {
-      err.message.should.eq('Oops.');
+      err.message.should.match(/Oops/);
       arg.should.eql('arg');
       done();
     };
