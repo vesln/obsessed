@@ -15,6 +15,10 @@ $ npm install
 $ make test
 ```
 
+## Todo
+
+- Browser version
+
 ## License
 
 (The MIT License)

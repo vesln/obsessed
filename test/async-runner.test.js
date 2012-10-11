@@ -7,7 +7,7 @@ var AsyncRunner = require('../lib/async-runner');
 
 describe('AsyncRunner', function() {
   it('can retry async operations n times', function(done) {
-    var runner = new AsyncRunner('3 times');
+    var runner = new AsyncRunner(3);
 
     var end = function(err, arg) {
       err.message.should.match(/Oops/);
@@ -21,6 +21,7 @@ describe('AsyncRunner', function() {
 
     runner.task(fn)
       .notify(end)
+      .delay(2)
       .run()
   });
 });
