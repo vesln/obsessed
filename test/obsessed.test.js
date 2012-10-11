@@ -5,6 +5,13 @@
 
 var obsessed = require('../');
 
+/**
+ * Subject dependencies.
+ */
+
+var SyncRunner = require('../lib/sync-runner')
+  , AsyncRunner = require('../lib/async-runner');
+
 describe('obsessed', function() {
   it('can handle strings for number of times', function() {
     var first = false
@@ -27,43 +34,9 @@ describe('obsessed', function() {
     second.should.be.true;
   });
 
-  it('retries sync operations n times', function() {
-    var i = 0;
-
-    obsessed(2, function() {
-      if (++i !== 2) {
-        throw new Error('Oops.');
-      }
-    });
-
-    i.should.eq(2);
-  });
-
-  it('throws the last error when hitting the limit', function() {
-    (function() {
-      obsessed(2, function() {
-        throw new Error('Oops.');
-      });
-
-    }).should.throw(Error, 'Oops.');
-  });
-
-  it('can retry async operations n times', function(done) {
-    var i = 3;
-
-    var end = function(err, arg) {
-      err.message.should.eq('Oops.');
-      arg.should.eql('arg');
-      done();
-    };
-
-    var fn = function(done) {
-      done(new Error('Oops.'), 'arg');
-    };
-
-    obsessed('3 times')
-      .task(fn)
-      .notify(end)
-      .run()
+  it('constructs the correct runner', function() {
+    obsessed(1).should.be.an.instanceof(AsyncRunner);
+    obsessed(1, function(done) {}).should.be.an.instanceof(AsyncRunner);
+    obsessed(1, function() {}).should.be.an.instanceof(SyncRunner);
   });
 });
