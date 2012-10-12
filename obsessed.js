@@ -390,7 +390,7 @@
        */
 
       Runner.prototype.error = function() {
-        if (this.errs) {
+        if (this.errs.length) {
           return new ObsessedError('Operation failed', this.errs);
         }
       };
