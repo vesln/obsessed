@@ -1,6 +1,6 @@
 {
   "name": "obsessed",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Retry mechanism for Node.js and the browser",
   "main": "./lib/obsessed.js",
   "homepage": "https://github.com/vesln/obsessed",
